@@ -1,32 +1,52 @@
 from book import Book
-
+from book import Library
 
 def main():
-  user_input = input('add book(1)\nadd section(2)\n>>> ').strip().lower()
-  if user_input == '1':
-    add_book()
-  elif user_input == '2':
-    add_section()
-  else:
-    print('wrong input')
+ 
+  while True:
+      display_menu()
+      choice = get_user_choice()
+      
+      if choice == '1':
+        Library.add_book()
+        break
+      elif choice == '2':
+          Library.add_section()
+          break
+      elif choice == '3':
+          Library.show_books(input('section: ').strip().lower())
+          break
+      elif choice == '4':
+          keyword = input('Enter Book Title or Author to search for: ').strip()
+          Library.search(keyword)
+          break
+      elif choice == '5':
+          print("Exiting the app. Goodbye!")
+          break
+      else:
+          RED = "\033[31m"
+          RESET = "\033[0m"
+          print(f"{RED}Invalid choice. Please select a number between 1 and 5.{RESET}")
+ 
   
   
 
-def add_book():
-    title = input('Title: ')
-    author = input('Author: ')
-    genre = input('Genre: ')
-    # language = input('Language: ')
-    # pages = input('Pages: ')
-    # rating = input('rating: ')
-    book = Book(title,author,genre) 
+ 
+def display_menu():
+    print("\n--- Library Menu ---")
+    print("1. Add Book")
+    print("2. Add Section")
+    print("3. Show section")
+    print("4. Search")
+    print("5. Exit")
+    print("--------------------")
+def get_user_choice():
+    choice = input("Enter your choice (1-5): ").lower().strip()
+    return choice
+  
 
     
-def add_section():
-    genre = input('Section Name: ')
-    with open(f'project/sections/{genre}.csv','w') as file:
-      pass
-    print(f'{genre} section added succefully')
+
     
 
 
