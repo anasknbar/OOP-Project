@@ -86,7 +86,7 @@ class Library:
             lines = file.readlines()
             
             for index,line in enumerate(lines[1:]):
-              if keyword.lower() in line.lower():
+              if keyword.lower().strip() in line.lower().strip():
                 title,author,section = line.split(',') 
                 data.append([title, author, section])
     if len(data) == 0:
